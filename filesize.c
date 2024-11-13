@@ -32,7 +32,7 @@ int main(int argc, char** argv) {
     }
     
     // Call system
-    strcat(cmd, argv[1]);
+    strncat(cmd, argv[1], 248);
     system(cmd);
     
 }
