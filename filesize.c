@@ -11,14 +11,28 @@ int main(int argc, char** argv) {
         fprintf(stderr, "Please provide the address of a file as an input.\n");
         return -1;
     }
+    static char ok_chars[] = "abcdefghijklmnopqrstuvwxyz"
+                             "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                             "1234567890_-.@";
     char cmd[BUFSIZE] = "wc -c < ";
+
     
+    // Overflow protection
     int cmd_length = strlen(argv[1]);
     if (cmd_length > 248) {
         printf("Please enter a shorter filename");
         return 0;
-    } else {
-        strcat(cmd, argv[1]);
-        system(cmd);
+    }  
+    // Santize
+    char *cp = argv[1];
+    const char *end = argv[1] + strlen(argv[1]);
+
+    for (cp += strspn(cp, ok_chars); cp != end; cp += strspn(cp, ok_chars)) {
+        *cp = '_';
     }
+    
+    // Call system
+    strcat(cmd, argv[1]);
+    system(cmd);
+    
 }
