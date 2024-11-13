@@ -12,6 +12,13 @@ int main(int argc, char** argv) {
         return -1;
     }
     char cmd[BUFSIZE] = "wc -c < ";
-    strcat(cmd, argv[1]);
-    system(cmd);
+    
+    cmd_length = strlen(argv[1]);
+    if (cmd_length > 248) {
+        strcat(cmd, argv[1]);
+        system(cmd);
+    } else {
+        printf("Please enter a shorter filename");
+        return 0;
+    }
 }
