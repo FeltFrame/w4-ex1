@@ -21,18 +21,22 @@ int main(int argc, char** argv) {
     int cmd_length = strlen(argv[1]);
     if (cmd_length > 248) {
         printf("Please enter a shorter filename");
-        return 0;
+        return -1;
     }  
-    // Santize
-    char *cp = argv[1];
-    const char *end = argv[1] + strlen(argv[1]);
+    // Sanitize
+    // char *cp = argv[1];
+    // const char *end = argv[1] + strlen(argv[1]);
 
-    for (cp += strspn(cp, ok_chars); cp != end; cp += strspn(cp, ok_chars)) {
-        *cp = '_';
-    }
+    // for (cp += strspn(cp, ok_chars); cp != end; cp += strspn(cp, ok_chars)) {
+        // *cp = '_';
+    // }
     
     // Call system
-    strncat(cmd, argv[1], 248);
-    system(cmd);
+    // strncat(cmd, argv[1], 248);
+    // system(cmd);
     
+    // Alternate call
+    argv[0] = cmd
+    argv[2] = NULL
+    execvp(cmd, argv)
 }
