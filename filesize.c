@@ -36,7 +36,7 @@ int main(int argc, char** argv) {
     // system(cmd);
     
     // Alternate call
-    argv[0] = cmd
-    argv[2] = NULL
-    execvp(cmd, argv)
+    argv[0] = cmd;
+    argv[2] = NULL;
+    execvp(cmd, argv);
 }
